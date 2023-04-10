@@ -11,13 +11,14 @@ let kFirstName = "first name key"
 let kLastName = "last name key"
 let kEmail = "email key"
 let kIsLoggedIn = "kIsLoggedIn"
+let kPhone = "phone key"
 
 struct Onboarding: View {
     @State var firstName: String = ""
     @State var lastName: String = ""
     @State var email: String = ""
     @State var isLoggedIn = false
-    
+    @State var phoneNumber = ""
     
     var body: some View {
         NavigationView {
@@ -47,21 +48,24 @@ struct Onboarding: View {
                 }
                 .padding(.horizontal)
                 Spacer()
-                Button("Register") {
+                Button(action: {
                     if (!(firstName.isEmpty) && !(lastName.isEmpty) && !(email.isEmpty)){
                         UserDefaults.standard.set(firstName, forKey: kFirstName)
                         UserDefaults.standard.set(lastName, forKey: kLastName)
                         UserDefaults.standard.set(email, forKey: kEmail)
+                        UserDefaults.standard.set(phoneNumber, forKey: kPhone)
                         isLoggedIn = true
                         UserDefaults.standard.set(isLoggedIn, forKey: kIsLoggedIn)
                     }
+                }) {
+                    Text("Log In")
+                        .padding()
+                        .frame(minWidth: 0, maxWidth: .infinity)
+                        .background(Color("yellow"))
+                        .foregroundColor(.black)
+                        .cornerRadius(16)
+                        .padding()
                 }
-                .padding()
-                .frame(minWidth: 0, maxWidth: .infinity)
-                .background(Color("yellow"))
-                .foregroundColor(.black)
-                .cornerRadius(16)
-                .padding()
             }
             .onAppear(){
                 if(UserDefaults.standard.bool(forKey: kIsLoggedIn)){

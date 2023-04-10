@@ -13,17 +13,17 @@ struct FoodDetail: View {
     var body: some View {
         HStack{
             VStack{
-                Text(dish.title ?? "")
+                Text(dish.title!)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundColor(.black)
                     .fontWeight(.bold)
-                Text(dish.descriptions ?? "")
+                Text(dish.descriptions!)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 Spacer()
-                Text(dish.price ?? "")
+                Text(dish.price!)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
-            AsyncImage(url: URL(string: dish.image ?? "")) { image in
+            AsyncImage(url: URL(string: dish.image!)) { image in
                 image
                     .resizable()
                     .aspectRatio(contentMode: .fill)

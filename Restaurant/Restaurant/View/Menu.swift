@@ -26,6 +26,22 @@ struct Menu: View {
                         .padding(.top, -10)
                 }
                 //
+                VStack(alignment: .leading){
+                    Text("Order for Delivery!")
+                        .padding()
+                        .fontWeight(.bold)
+                    
+                    ScrollView(.horizontal, showsIndicators: false){
+                        HStack {
+                            Toggle("Starters", isOn: $starters).toggleStyle(.button).tint(.blue)
+                            Toggle("Mains", isOn: $mains).toggleStyle(.button).tint(.blue)
+                            Toggle("Drinks", isOn: $drinks).toggleStyle(.button).tint(.blue)
+                            Toggle("Desserts", isOn: $desserts).toggleStyle(.button).tint(.blue)
+                        }
+                    }
+                    .padding()
+                    .padding(.top, -10)
+                }
 
                 FetchedObjects(predicate: buildPredicate(),sortDescriptors: buildSortDescriptors()) { (dishes: [Dish]) in
                     List {
